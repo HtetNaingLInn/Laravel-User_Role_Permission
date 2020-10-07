@@ -20,7 +20,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <style>
-
+        .list{
+            list-style-type: none;
+            list-style-position: initial;
+            text-decoration-line: none
+        }
     </style>
 
 </head>

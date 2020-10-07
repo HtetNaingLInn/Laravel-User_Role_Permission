@@ -9,12 +9,10 @@ import User from "./components/UserComponent.vue";
 export default new Router({
     routes: [{
             path: "/",
-            name: "home",
             component: Home
         },
         {
             path: "/user",
-            name: "user",
             component: User
         }
     ]

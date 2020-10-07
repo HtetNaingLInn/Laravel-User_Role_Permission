@@ -1,3 +1,3 @@
 <template>
-    <h1>I am Home Page</h1>
+    <h1>I am User Page</h1>
 </template>

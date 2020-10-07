@@ -1912,11 +1912,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HomeComponent.vue",
   data: function data() {
     return {
-      home: "welcome home"
+      home: "welcome home page"
     };
   }
 });
@@ -37505,7 +37507,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [_vm._v(_vm._s(_vm.home))])
+  return _c("div", { staticClass: "container" }, [
+    _c("h1", [_vm._v(_vm._s(_vm.home))])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -37529,7 +37533,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("I am Home Page")])
+  return _c("h1", [_vm._v("I am User Page")])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -37557,9 +37561,19 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("router-link", { attrs: { to: "/" } }, [_vm._v("Home")]),
-      _vm._v(" "),
-      _c("router-link", { attrs: { to: "/user" } }, [_vm._v("User")]),
+      _c("ul", { staticClass: "list" }, [
+        _c(
+          "li",
+          [_c("router-link", { attrs: { to: "/" } }, [_vm._v("Home")])],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          [_c("router-link", { attrs: { to: "/user" } }, [_vm._v("User")])],
+          1
+        )
+      ]),
       _vm._v(" "),
       _c("router-view")
     ],
@@ -53071,11 +53085,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 /* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: [{
     path: "/",
-    name: "home",
     component: _components_HomeComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   }, {
     path: "/user",
-    name: "user",
     component: _components_UserComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   }]
 }));
