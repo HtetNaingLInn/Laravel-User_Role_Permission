@@ -78,7 +78,7 @@
                     </thead>
                     <tbody>
                         <tr
-                            v-for="permission in permissions.data"
+                            v-for="permission in permissions"
                             :key="permission.id"
                         >
                             <td>{{ permission.id }}</td>
@@ -101,12 +101,6 @@
                         <tr></tr>
                     </tbody>
                 </table>
-
-                <pagination
-                    :data="permissions"
-                    @pagination-change-page="permissionList"
-                    class="justify-content-center"
-                ></pagination>
             </div>
             <!-- Table End -->
         </div>
@@ -120,7 +114,7 @@ export default {
         return {
             message: "",
             editMode: false,
-            permissions: {},
+            permissions: [],
             permission: new Form({
                 id: "",
                 name: ""
@@ -128,8 +122,8 @@ export default {
         };
     },
     methods: {
-        permissionList(page = 1) {
-            this.permission.get("/api/permission?page=" + page).then(res => {
+        permissionList() {
+            this.permission.get("/api/permission").then(res => {
                 this.permissions = res.data;
             });
         },

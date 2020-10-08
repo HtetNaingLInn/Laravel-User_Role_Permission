@@ -1914,6 +1914,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HomeComponent.vue",
   data: function data() {
@@ -2043,19 +2050,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PermissionComponent.vue",
   data: function data() {
     return {
       message: "",
       editMode: false,
-      permissions: {},
+      permissions: [],
       permission: new Form({
         id: "",
         name: ""
@@ -2066,8 +2067,7 @@ __webpack_require__.r(__webpack_exports__);
     permissionList: function permissionList() {
       var _this = this;
 
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      this.permission.get("/api/permission?page=" + page).then(function (res) {
+      this.permission.get("/api/permission").then(function (res) {
         _this.permissions = res.data;
       });
     },
@@ -43216,10 +43216,27 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("h1", [_vm._v(_vm._s(_vm.home))])
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _c("h2", { staticClass: "text-center" }, [_vm._v(_vm._s(_vm.home))])
+      ]),
+      _vm._v(" "),
+      _vm._m(0)
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h3", { staticClass: "text-center text-danger" }, [
+        _vm._v("!Hello World!")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -43356,74 +43373,63 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "col-md-8" },
-        [
-          _c("table", { staticClass: "table" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              [
-                _vm._l(_vm.permissions.data, function(permission) {
-                  return _c("tr", { key: permission.id }, [
-                    _c("td", [_vm._v(_vm._s(permission.id))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(permission.name))]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success btn-sm",
-                          on: {
-                            click: function($event) {
-                              return _vm.editPermission(permission)
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                Edit\n                            "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger btn-sm",
-                          on: {
-                            click: function($event) {
-                              return _vm.deletePermission(permission.id)
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                Delete\n                            "
-                          )
-                        ]
-                      )
-                    ])
-                  ])
-                }),
-                _vm._v(" "),
-                _c("tr")
-              ],
-              2
-            )
-          ]),
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("table", { staticClass: "table" }, [
+          _vm._m(0),
           _vm._v(" "),
-          _c("pagination", {
-            staticClass: "justify-content-center",
-            attrs: { data: _vm.permissions },
-            on: { "pagination-change-page": _vm.permissionList }
-          })
-        ],
-        1
-      )
+          _c(
+            "tbody",
+            [
+              _vm._l(_vm.permissions, function(permission) {
+                return _c("tr", { key: permission.id }, [
+                  _c("td", [_vm._v(_vm._s(permission.id))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(permission.name))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success btn-sm",
+                        on: {
+                          click: function($event) {
+                            return _vm.editPermission(permission)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                Edit\n                            "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger btn-sm",
+                        on: {
+                          click: function($event) {
+                            return _vm.deletePermission(permission.id)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                Delete\n                            "
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              }),
+              _vm._v(" "),
+              _c("tr")
+            ],
+            2
+          )
+        ])
+      ])
     ])
   ])
 }

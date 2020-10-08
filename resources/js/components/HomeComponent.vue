@@ -1,6 +1,13 @@
 <template>
     <div class="container">
-        <h1>{{ home }}</h1>
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center">{{ home }}</h2>
+            </div>
+            <div class="card-body">
+                <h3 class="text-center text-danger">!Hello World!</h3>
+            </div>
+        </div>
     </div>
 </template>
 
