@@ -1924,9 +1924,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HomeComponent.vue",
   data: function data() {
+    this.$Progress.start();
     return {
       home: "welcome home page"
     };
+    this.$Progress.finish();
   }
 });
 
@@ -1941,32 +1943,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2072,13 +2048,16 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     createPermission: function createPermission() {
+      this.$Progress.start();
       this.permission.clear();
       this.editMode = false;
       this.permission.reset();
+      this.$Progress.finish();
     },
     storePermission: function storePermission() {
       var _this2 = this;
 
+      this.$Progress.start();
       this.permission.post("/api/permission").then(function (res) {
         _this2.permissionList();
 
@@ -2086,16 +2065,20 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         _this2.message = err.response.data.message;
       });
+      this.$Progress.finish();
     },
     editPermission: function editPermission(permission) {
+      this.$Progress.start();
       this.permission.clear();
       this.editMode = true;
       this.permission.id = permission.id;
       this.permission.name = permission.name;
+      this.$Progress.finish();
     },
     updatePermission: function updatePermission() {
       var _this3 = this;
 
+      this.$Progress.start();
       this.permission.put("/api/permission/".concat(this.permission.id)).then(function (res) {
         _this3.permissionList();
 
@@ -2105,6 +2088,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         _this3.message = err.response.data.message;
       });
+      this.$Progress.finish();
     },
     deletePermission: function deletePermission(id) {
       var _this4 = this;
@@ -2121,15 +2105,21 @@ __webpack_require__.r(__webpack_exports__);
         if (result.isConfirmed) {
           Swal.fire("Deleted!", "Your file has been deleted.", "success");
 
+          _this4.$Progress.start();
+
           _this4.permission["delete"]("/api/permission/".concat(id)).then(function (res) {
             _this4.permissionList();
+
+            _this4.$Progress.finish();
           });
         }
       });
     }
   },
   created: function created() {
+    this.$Progress.start();
     this.permissionList();
+    this.$Progress.finish();
   }
 });
 
@@ -2144,32 +2134,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2270,13 +2234,16 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     createRole: function createRole() {
+      this.$Progress.start();
       this.RoleList();
       this.role.reset();
       this.editMode = false;
+      this.$Progress.finish();
     },
     storeRole: function storeRole() {
       var _this2 = this;
 
+      this.$Progress.start();
       this.role.post("/api/role").then(function (res) {
         _this2.RoleList();
 
@@ -2284,16 +2251,20 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         _this2.message = err.response.data.message;
       });
+      this.$Progress.finish();
     },
     editRole: function editRole(role) {
+      this.$Progress.start();
       this.editMode = true;
       this.role.id = role.id;
       this.role.name = role.name;
       this.role.clear();
+      this.$Progress.finish();
     },
     updateRole: function updateRole() {
       var _this3 = this;
 
+      this.$Progress.start();
       this.role.put("/api/role/".concat(this.role.id)).then(function (res) {
         _this3.RoleList();
 
@@ -2307,6 +2278,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         _this3.message = err.response.data.message;
       });
+      this.$Progress.finish();
     },
     deleteRole: function deleteRole(id) {
       var _this4 = this;
@@ -2322,15 +2294,22 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.isConfirmed) {
           Swal.fire("Deleted!", "", "success");
+
+          _this4.$Progress.start();
+
           axios["delete"]("/api/role/".concat(id)).then(function (res) {
             _this4.RoleList();
           });
+
+          _this4.$Progress.finish();
         }
       });
     }
   },
   created: function created() {
+    this.$Progress.start();
     this.RoleList();
+    this.$Progress.finish();
   }
 });
 
@@ -2345,65 +2324,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2600,7 +2520,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       this.user.get("/api/user?search=" + this.search).then(function (res) {
+        _this3.$Progress.start();
+
         _this3.users = res.data;
+
+        _this3.$Progress.finish();
       });
     },
     userList: function userList() {
@@ -2608,41 +2532,57 @@ __webpack_require__.r(__webpack_exports__);
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       this.user.get("/api/user?page=" + page).then(function (res) {
+        _this4.$Progress.start();
+
         _this4.users = res.data;
+
+        _this4.$Progress.finish();
       });
     },
     createUser: function createUser() {
+      this.$Progress.start();
       this.editMode = false;
       this.user.reset();
       this.userList();
+      this.$Progress.finish();
     },
     storeUser: function storeUser() {
       var _this5 = this;
 
       this.user.post("/api/user/").then(function (res) {
+        _this5.$Progress.start();
+
         _this5.userList();
 
         _this5.user.reset();
+
+        _this5.$Progress.finish();
       })["catch"](function (err) {
         _this5.message = err.response.data.message;
       });
     },
     editUser: function editUser(user) {
+      this.$Progress.start();
       this.editMode = true;
       this.user.id = user.id;
       this.user.name = user.name;
       this.user.email = user.email;
       this.user.clear();
+      this.$Progress.finish();
     },
     updateUser: function updateUser() {
       var _this6 = this;
 
       this.user.put("/api/user/".concat(this.user.id)).then(function (res) {
+        _this6.$Progress.start();
+
         _this6.userList();
 
         _this6.user.reset();
 
         _this6.createUser();
+
+        _this6.$Progress.finish();
       })["catch"](function (err) {
         _this6.message = err.response.data.message;
       });
@@ -2661,17 +2601,24 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.isConfirmed) {
           Swal.fire("Deleted!", "", "success");
+
+          _this7.$Progress.start();
+
           axios["delete"]("/api/user/".concat(id)).then(function (res) {
             _this7.userList();
           });
+
+          _this7.$Progress.finish();
         }
       });
     }
   },
   created: function created() {
+    this.$Progress.start();
     this.userList();
     this.roleList();
     this.permissionList();
+    this.$Progress.finish();
   }
 });
 
@@ -43267,7 +43214,7 @@ var render = function() {
             staticClass: "btn btn-primary btn-sm my-2",
             on: { click: _vm.createPermission }
           },
-          [_vm._v("\n                Create Permission\n            ")]
+          [_vm._v("Create Permission")]
         )
       ]),
       _vm._v(" "),
@@ -43280,11 +43227,11 @@ var render = function() {
           _c("div", { staticClass: "card-header" }, [
             _c("h5", { staticClass: "text-info" }, [
               _vm._v(
-                "\n                        " +
+                "\n            " +
                   _vm._s(
                     _vm.editMode ? "Edit Permission" : "Create New Permission"
                   ) +
-                  "\n                    "
+                  "\n          "
               )
             ])
           ]),
@@ -43359,11 +43306,7 @@ var render = function() {
                       staticClass: "btn btn-primary float-right",
                       attrs: { type: "submit" }
                     },
-                    [
-                      _vm._v(
-                        "\n                            save\n                        "
-                      )
-                    ]
+                    [_vm._v("save")]
                   )
                 ]
               )
@@ -43397,11 +43340,7 @@ var render = function() {
                           }
                         }
                       },
-                      [
-                        _vm._v(
-                          "\n                                Edit\n                            "
-                        )
-                      ]
+                      [_vm._v("Edit")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -43414,11 +43353,7 @@ var render = function() {
                           }
                         }
                       },
-                      [
-                        _vm._v(
-                          "\n                                Delete\n                            "
-                        )
-                      ]
+                      [_vm._v("Delete")]
                     )
                   ])
                 ])
@@ -43479,7 +43414,7 @@ var render = function() {
             staticClass: "btn btn-primary btn-sm my-2",
             on: { click: _vm.createRole }
           },
-          [_vm._v("\n                Create Role\n            ")]
+          [_vm._v("Create Role")]
         )
       ]),
       _vm._v(" "),
@@ -43492,9 +43427,9 @@ var render = function() {
           _c("div", { staticClass: "card-header" }, [
             _c("h5", { staticClass: "text-info" }, [
               _vm._v(
-                "\n                        " +
+                "\n            " +
                   _vm._s(_vm.editMode ? "Edit Role Name" : "Create New Role") +
-                  "\n                    "
+                  "\n          "
               )
             ])
           ]),
@@ -43560,11 +43495,7 @@ var render = function() {
                       staticClass: "btn btn-primary float-right",
                       attrs: { type: "submit" }
                     },
-                    [
-                      _vm._v(
-                        "\n                            save\n                        "
-                      )
-                    ]
+                    [_vm._v("save")]
                   )
                 ]
               )
@@ -43598,11 +43529,7 @@ var render = function() {
                           }
                         }
                       },
-                      [
-                        _vm._v(
-                          "\n                                Edit\n                            "
-                        )
-                      ]
+                      [_vm._v("Edit")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -43615,11 +43542,7 @@ var render = function() {
                           }
                         }
                       },
-                      [
-                        _vm._v(
-                          "\n                                Delete\n                            "
-                        )
-                      ]
+                      [_vm._v("Delete")]
                     )
                   ])
                 ])
@@ -43684,7 +43607,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("\n                Create User\n            ")]
+          [_vm._v("Create User")]
         )
       ]),
       _vm._v(" "),
@@ -43742,9 +43665,9 @@ var render = function() {
           _c("div", { staticClass: "card-header" }, [
             _c("h5", { staticClass: "text-info" }, [
               _vm._v(
-                "\n                        " +
+                "\n            " +
                   _vm._s(_vm.editMode ? "Edit User info" : "Create New User") +
-                  "\n                    "
+                  "\n          "
               )
             ])
           ]),
@@ -43984,11 +43907,7 @@ var render = function() {
                       staticClass: "btn btn-primary float-right",
                       attrs: { type: "submit" }
                     },
-                    [
-                      _vm._v(
-                        "\n                            save\n                        "
-                      )
-                    ]
+                    [_vm._v("save")]
                   )
                 ]
               )
@@ -44031,11 +43950,7 @@ var render = function() {
                             "aria-expanded": "false"
                           }
                         },
-                        [
-                          _vm._v(
-                            "\n                                    Permission\n                                "
-                          )
-                        ]
+                        [_vm._v("Permission")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -44049,13 +43964,7 @@ var render = function() {
                               staticClass: "dropdown-item",
                               attrs: { href: "#" }
                             },
-                            [
-                              _vm._v(
-                                "\n                                        " +
-                                  _vm._s(permission.name) +
-                                  "\n                                    "
-                              )
-                            ]
+                            [_vm._v(_vm._s(permission.name))]
                           )
                         }),
                         0
@@ -44074,11 +43983,7 @@ var render = function() {
                           }
                         }
                       },
-                      [
-                        _vm._v(
-                          "\n                                Edit\n                            "
-                        )
-                      ]
+                      [_vm._v("Edit")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -44091,11 +43996,7 @@ var render = function() {
                           }
                         }
                       },
-                      [
-                        _vm._v(
-                          "\n                                Delete\n                            "
-                        )
-                      ]
+                      [_vm._v("Delete")]
                     )
                   ])
                 ])
@@ -44124,11 +44025,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [
-          _vm._v(
-            "\n                                    search\n                                "
-          )
-        ]
+        [_vm._v("search")]
       )
     ])
   },
@@ -44354,6 +44251,18 @@ function normalizeComponent (
     options: options
   }
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-progressbar/dist/vue-progressbar.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/vue-progressbar/dist/vue-progressbar.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(t,o){ true?module.exports=o():undefined}(this,function(){"use strict";!function(){if("undefined"!=typeof document){var t=document.head||document.getElementsByTagName("head")[0],o=document.createElement("style"),i=" .__cov-progress { opacity: 1; z-index: 999999; } ";o.type="text/css",o.styleSheet?o.styleSheet.cssText=i:o.appendChild(document.createTextNode(i)),t.appendChild(o)}}();var t="undefined"!=typeof window,r={render:function(){var t=this,o=t.$createElement;return(t._self._c||o)("div",{staticClass:"__cov-progress",style:t.style})},staticRenderFns:[],name:"VueProgress",serverCacheKey:function(){return"Progress"},computed:{style:function(){var t=this.progress,o=t.options,i=!!o.show,e=o.location,s={"background-color":o.canSuccess?o.color:o.failedColor,opacity:o.show?1:0,position:o.position};return"top"===e||"bottom"===e?("top"===e?s.top="0px":s.bottom="0px",o.inverse?s.right="0px":s.left="0px",s.width=t.percent+"%",s.height=o.thickness,s.transition=(i?"width "+o.transition.speed+", ":"")+"opacity "+o.transition.opacity):"left"!==e&&"right"!==e||("left"===e?s.left="0px":s.right="0px",o.inverse?s.top="0px":s.bottom="0px",s.height=t.percent+"%",s.width=o.thickness,s.transition=(i?"height "+o.transition.speed+", ":"")+"opacity "+o.transition.opacity),s},progress:function(){return t?window.VueProgressBarEventBus.RADON_LOADING_BAR:{percent:0,options:{canSuccess:!0,show:!1,color:"rgb(19, 91, 55)",failedColor:"red",thickness:"2px",transition:{speed:"0.2s",opacity:"0.6s",termination:300},location:"top",autoRevert:!0,inverse:!1}}}}};return{install:function(o){var t=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{},i=(o.version.split(".")[0],"undefined"!=typeof window),e={$vm:null,state:{tFailColor:"",tColor:"",timer:null,cut:0},init:function(t){this.$vm=t},start:function(t){var o=this;this.$vm&&(t||(t=3e3),this.$vm.RADON_LOADING_BAR.percent=0,this.$vm.RADON_LOADING_BAR.options.show=!0,this.$vm.RADON_LOADING_BAR.options.canSuccess=!0,this.state.cut=1e4/Math.floor(t),clearInterval(this.state.timer),this.state.timer=setInterval(function(){o.increase(o.state.cut*Math.random()),95<o.$vm.RADON_LOADING_BAR.percent&&o.$vm.RADON_LOADING_BAR.options.autoFinish&&o.finish()},100))},set:function(t){this.$vm.RADON_LOADING_BAR.options.show=!0,this.$vm.RADON_LOADING_BAR.options.canSuccess=!0,this.$vm.RADON_LOADING_BAR.percent=Math.floor(t)},get:function(){return Math.floor(this.$vm.RADON_LOADING_BAR.percent)},increase:function(t){this.$vm.RADON_LOADING_BAR.percent=Math.min(99,this.$vm.RADON_LOADING_BAR.percent+Math.floor(t))},decrease:function(t){this.$vm.RADON_LOADING_BAR.percent=this.$vm.RADON_LOADING_BAR.percent-Math.floor(t)},hide:function(){var t=this;clearInterval(this.state.timer),this.state.timer=null,setTimeout(function(){t.$vm.RADON_LOADING_BAR.options.show=!1,o.nextTick(function(){setTimeout(function(){t.$vm.RADON_LOADING_BAR.percent=0},100),t.$vm.RADON_LOADING_BAR.options.autoRevert&&setTimeout(function(){t.revert()},300)})},this.$vm.RADON_LOADING_BAR.options.transition.termination)},pause:function(){clearInterval(this.state.timer)},finish:function(){this.$vm&&(this.$vm.RADON_LOADING_BAR.percent=100,this.hide())},fail:function(){this.$vm.RADON_LOADING_BAR.options.canSuccess=!1,this.$vm.RADON_LOADING_BAR.percent=100,this.hide()},setFailColor:function(t){this.$vm.RADON_LOADING_BAR.options.failedColor=t},setColor:function(t){this.$vm.RADON_LOADING_BAR.options.color=t},setLocation:function(t){this.$vm.RADON_LOADING_BAR.options.location=t},setTransition:function(t){this.$vm.RADON_LOADING_BAR.options.transition=t},tempFailColor:function(t){this.state.tFailColor=this.$vm.RADON_LOADING_BAR.options.failedColor,this.$vm.RADON_LOADING_BAR.options.failedColor=t},tempColor:function(t){this.state.tColor=this.$vm.RADON_LOADING_BAR.options.color,this.$vm.RADON_LOADING_BAR.options.color=t},tempLocation:function(t){this.state.tLocation=this.$vm.RADON_LOADING_BAR.options.location,this.$vm.RADON_LOADING_BAR.options.location=t},tempTransition:function(t){this.state.tTransition=this.$vm.RADON_LOADING_BAR.options.transition,this.$vm.RADON_LOADING_BAR.options.transition=t},revertColor:function(){this.$vm.RADON_LOADING_BAR.options.color=this.state.tColor,this.state.tColor=""},revertFailColor:function(){this.$vm.RADON_LOADING_BAR.options.failedColor=this.state.tFailColor,this.state.tFailColor=""},revertLocation:function(){this.$vm.RADON_LOADING_BAR.options.location=this.state.tLocation,this.state.tLocation=""},revertTransition:function(){this.$vm.RADON_LOADING_BAR.options.transition=this.state.tTransition,this.state.tTransition={}},revert:function(){this.$vm.RADON_LOADING_BAR.options.autoRevert&&(this.state.tColor&&this.revertColor(),this.state.tFailColor&&this.revertFailColor(),this.state.tLocation&&this.revertLocation(),!this.state.tTransition||void 0===this.state.tTransition.speed&&void 0===this.state.tTransition.opacity||this.revertTransition())},parseMeta:function(t){for(var o in t.func){var i=t.func[o];switch(i.call){case"color":switch(i.modifier){case"set":this.setColor(i.argument);break;case"temp":this.tempColor(i.argument)}break;case"fail":switch(i.modifier){case"set":this.setFailColor(i.argument);break;case"temp":this.tempFailColor(i.argument)}break;case"location":switch(i.modifier){case"set":this.setLocation(i.argument);break;case"temp":this.tempLocation(i.argument)}break;case"transition":switch(i.modifier){case"set":this.setTransition(i.argument);break;case"temp":this.tempTransition(i.argument)}}}}},s=function(t,o){for(var i,e,s=1;s<arguments.length;++s)for(i in e=arguments[s])Object.prototype.hasOwnProperty.call(e,i)&&(t[i]=e[i]);return t}({canSuccess:!0,show:!1,color:"#73ccec",position:"fixed",failedColor:"red",thickness:"2px",transition:{speed:"0.2s",opacity:"0.6s",termination:300},autoRevert:!0,location:"top",inverse:!1,autoFinish:!0},t),n=new o({data:{RADON_LOADING_BAR:{percent:0,options:s}}});i&&(window.VueProgressBarEventBus=n,e.init(n)),o.component("vue-progress-bar",r),o.prototype.$Progress=e}}});
 
 
 /***/ }),
@@ -59496,6 +59405,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
 /* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-progressbar */ "./node_modules/vue-progressbar/dist/vue-progressbar.js");
+/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_progressbar__WEBPACK_IMPORTED_MODULE_4__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -59503,6 +59414,18 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_4___default.a, {
+  color: '#38c172',
+  failedColor: 'red',
+  height: '2px',
+  thickness: '2px',
+  transition: {
+    speed: '0.8s',
+    opacity: '0.2s',
+    termination: 500
+  }
+});
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("pagination", __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("app-component", __webpack_require__(/*! ./components/layouts/app.vue */ "./resources/js/components/layouts/app.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MODULE_2__["HasError"].name, vform__WEBPACK_IMPORTED_MODULE_2__["HasError"]);

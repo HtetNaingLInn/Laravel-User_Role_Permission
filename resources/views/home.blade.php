@@ -6,6 +6,7 @@
 
 <div id="app">
     <app-component></app-component>
+    <vue-progress-bar></vue-progress-bar>
 </div>
 
 @endsection
