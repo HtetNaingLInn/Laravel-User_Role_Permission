@@ -3,7 +3,8 @@
     <div class="row">
       <!-- Create button Start -->
       <div class="col-md-6">
-        <button v-on:click="createPermission" class="btn btn-primary btn-sm my-2">Create Permission</button>
+        <button v-on:click="createPermission" class="btn btn-primary btn-sm my-2">
+            <i class="fas fa-plus-circle"></i>&nbsp;Create Permission</button>
       </div>
       <!-- Create button End -->
       <div class="col-md-6"></div>
@@ -44,7 +45,8 @@
                 />
                 <has-error :form="permission" field="name"></has-error>
               </div>
-              <button type="submit" class="btn btn-primary float-right">save</button>
+              <button type="submit" class="btn btn-primary float-right">
+                  <i class="fa fa-save"></i>&nbsp;save</button>
             </form>
           </div>
         </div>
@@ -65,11 +67,11 @@
               <td>{{ permission.id }}</td>
               <td>{{ permission.name }}</td>
               <td>
-                <button v-on:click="editPermission(permission)" class="btn btn-success btn-sm">Edit</button>
+                <button v-on:click="editPermission(permission)" class="btn btn-success btn-sm"><i class="far fa-edit"></i></button>
                 <button
                   v-on:click="deletePermission(permission.id)"
                   class="btn btn-danger btn-sm"
-                >Delete</button>
+                ><i class="far fa-trash-alt"></i></button>
               </td>
             </tr>
             <tr></tr>
@@ -119,6 +121,10 @@ export default {
         .catch((err) => {
           this.message = err.response.data.message;
         });
+         Toast.fire({
+                icon: 'success',
+                title: 'Created in successfully'
+                })
       this.$Progress.finish();
     },
     editPermission(permission) {
@@ -141,6 +147,10 @@ export default {
         .catch((err) => {
           this.message = err.response.data.message;
         });
+         Toast.fire({
+                icon: 'success',
+                title: 'Edited in successfully'
+                })
       this.$Progress.finish();
     },
     deletePermission(id) {
@@ -159,6 +169,10 @@ export default {
           this.permission.delete(`/api/permission/${id}`).then((res) => {
             this.permissionList();
             this.$Progress.finish();
+            Toast.fire({
+                icon: 'success',
+                title: 'Deleted in successfully'
+                })
           });
         }
       });

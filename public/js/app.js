@@ -2026,6 +2026,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PermissionComponent.vue",
   data: function data() {
@@ -2065,6 +2067,10 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         _this2.message = err.response.data.message;
       });
+      Toast.fire({
+        icon: 'success',
+        title: 'Created in successfully'
+      });
       this.$Progress.finish();
     },
     editPermission: function editPermission(permission) {
@@ -2087,6 +2093,10 @@ __webpack_require__.r(__webpack_exports__);
         _this3.createPermission();
       })["catch"](function (err) {
         _this3.message = err.response.data.message;
+      });
+      Toast.fire({
+        icon: 'success',
+        title: 'Edited in successfully'
       });
       this.$Progress.finish();
     },
@@ -2111,6 +2121,11 @@ __webpack_require__.r(__webpack_exports__);
             _this4.permissionList();
 
             _this4.$Progress.finish();
+
+            Toast.fire({
+              icon: 'success',
+              title: 'Deleted in successfully'
+            });
           });
         }
       });
@@ -2134,6 +2149,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -2251,6 +2268,10 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         _this2.message = err.response.data.message;
       });
+      Toast.fire({
+        icon: 'success',
+        title: 'Created in successfully'
+      });
       this.$Progress.finish();
     },
     editRole: function editRole(role) {
@@ -2278,6 +2299,10 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         _this3.message = err.response.data.message;
       });
+      Toast.fire({
+        icon: 'success',
+        title: 'Edited in successfully'
+      });
       this.$Progress.finish();
     },
     deleteRole: function deleteRole(id) {
@@ -2299,6 +2324,10 @@ __webpack_require__.r(__webpack_exports__);
 
           axios["delete"]("/api/role/".concat(id)).then(function (res) {
             _this4.RoleList();
+          });
+          Toast.fire({
+            icon: 'success',
+            title: 'Deleted in successfully'
           });
 
           _this4.$Progress.finish();
@@ -2324,6 +2353,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -2556,6 +2588,11 @@ __webpack_require__.r(__webpack_exports__);
 
         _this5.user.reset();
 
+        Toast.fire({
+          icon: 'success',
+          title: 'Created in successfully'
+        });
+
         _this5.$Progress.finish();
       })["catch"](function (err) {
         _this5.message = err.response.data.message;
@@ -2582,6 +2619,11 @@ __webpack_require__.r(__webpack_exports__);
 
         _this6.createUser();
 
+        Toast.fire({
+          icon: 'success',
+          title: 'Edited in successfully'
+        });
+
         _this6.$Progress.finish();
       })["catch"](function (err) {
         _this6.message = err.response.data.message;
@@ -2606,6 +2648,10 @@ __webpack_require__.r(__webpack_exports__);
 
           axios["delete"]("/api/user/".concat(id)).then(function (res) {
             _this7.userList();
+          });
+          Toast.fire({
+            icon: 'success',
+            title: 'Deleted in successfully'
           });
 
           _this7.$Progress.finish();
@@ -43214,7 +43260,10 @@ var render = function() {
             staticClass: "btn btn-primary btn-sm my-2",
             on: { click: _vm.createPermission }
           },
-          [_vm._v("Create Permission")]
+          [
+            _c("i", { staticClass: "fas fa-plus-circle" }),
+            _vm._v(" Create Permission")
+          ]
         )
       ]),
       _vm._v(" "),
@@ -43300,14 +43349,7 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary float-right",
-                      attrs: { type: "submit" }
-                    },
-                    [_vm._v("save")]
-                  )
+                  _vm._m(0)
                 ]
               )
             ],
@@ -43318,7 +43360,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "col-md-8" }, [
         _c("table", { staticClass: "table" }, [
-          _vm._m(0),
+          _vm._m(1),
           _vm._v(" "),
           _c(
             "tbody",
@@ -43340,7 +43382,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Edit")]
+                      [_c("i", { staticClass: "far fa-edit" })]
                     ),
                     _vm._v(" "),
                     _c(
@@ -43353,7 +43395,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Delete")]
+                      [_c("i", { staticClass: "far fa-trash-alt" })]
                     )
                   ])
                 ])
@@ -43369,6 +43411,16 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-primary float-right", attrs: { type: "submit" } },
+      [_c("i", { staticClass: "fa fa-save" }), _vm._v(" save")]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -43414,7 +43466,10 @@ var render = function() {
             staticClass: "btn btn-primary btn-sm my-2",
             on: { click: _vm.createRole }
           },
-          [_vm._v("Create Role")]
+          [
+            _c("i", { staticClass: "fas fa-plus-circle" }),
+            _vm._v(" Create Role")
+          ]
         )
       ]),
       _vm._v(" "),
@@ -43489,14 +43544,7 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary float-right",
-                      attrs: { type: "submit" }
-                    },
-                    [_vm._v("save")]
-                  )
+                  _vm._m(0)
                 ]
               )
             ],
@@ -43507,7 +43555,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "col-md-8" }, [
         _c("table", { staticClass: "table" }, [
-          _vm._m(0),
+          _vm._m(1),
           _vm._v(" "),
           _c(
             "tbody",
@@ -43529,7 +43577,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Edit")]
+                      [_c("i", { staticClass: "far fa-edit" })]
                     ),
                     _vm._v(" "),
                     _c(
@@ -43542,7 +43590,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Delete")]
+                      [_c("i", { staticClass: "far fa-trash-alt" })]
                     )
                   ])
                 ])
@@ -43558,6 +43606,16 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-primary float-right", attrs: { type: "submit" } },
+      [_c("i", { staticClass: "fa fa-save" }), _vm._v(" save")]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -43607,7 +43665,10 @@ var render = function() {
               }
             }
           },
-          [_vm._v("Create User")]
+          [
+            _c("i", { staticClass: "fas fa-plus-circle" }),
+            _vm._v(" Create User")
+          ]
         )
       ]),
       _vm._v(" "),
@@ -43901,14 +43962,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary float-right",
-                      attrs: { type: "submit" }
-                    },
-                    [_vm._v("save")]
-                  )
+                  _vm._m(1)
                 ]
               )
             ],
@@ -43922,7 +43976,7 @@ var render = function() {
         { staticClass: "col-md-8" },
         [
           _c("table", { staticClass: "table" }, [
-            _vm._m(1),
+            _vm._m(2),
             _vm._v(" "),
             _c(
               "tbody",
@@ -43983,7 +44037,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Edit")]
+                      [_c("i", { staticClass: "far fa-edit" })]
                     ),
                     _vm._v(" "),
                     _c(
@@ -43996,7 +44050,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Delete")]
+                      [_c("i", { staticClass: "far fa-trash-alt" })]
                     )
                   ])
                 ])
@@ -44025,9 +44079,19 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("search")]
+        [_c("i", { staticClass: "fas fa-search" })]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-primary float-right", attrs: { type: "submit" } },
+      [_c("i", { staticClass: "fa fa-save" }), _vm._v(" save")]
+    )
   },
   function() {
     var _vm = this
@@ -59424,6 +59488,17 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_progressbar__WEBPACK_IMPORTED
     speed: '0.8s',
     opacity: '0.2s',
     termination: 500
+  }
+});
+window.Toast = sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_3___default.a.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 1000,
+  timerProgressBar: true,
+  didOpen: function didOpen(toast) {
+    toast.addEventListener('mouseenter', sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_3___default.a.stopTimer);
+    toast.addEventListener('mouseleave', sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_3___default.a.resumeTimer);
   }
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("pagination", __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));

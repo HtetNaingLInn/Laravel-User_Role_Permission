@@ -2,7 +2,8 @@
   <div class="container col-md-12">
     <div class="row">
       <div class="col-md-6">
-        <button v-on:click="createUser()" class="btn btn-primary btn-sm my-3">Create User</button>
+        <button v-on:click="createUser()" class="btn btn-primary btn-sm my-3">
+            <i class="fas fa-plus-circle"></i>&nbsp;Create User</button>
       </div>
       <div class="col-md-6">
         <div class="row">
@@ -12,7 +13,7 @@
               <div class="input-group">
                 <input v-model="search" type="text" placeholder="search" class="form-control" />
                 <div class="input-group-append">
-                  <button class="btn btn-primary" type="submit">search</button>
+                  <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
                 </div>
               </div>
             </form>
@@ -98,7 +99,8 @@
                   >{{ permission.name }}</option>
                 </select>
               </div>
-              <button type="submit" class="btn btn-primary float-right">save</button>
+              <button type="submit" class="btn btn-primary float-right">
+                  <i class="fa fa-save"></i>&nbsp;save</button>
             </form>
           </div>
         </div>
@@ -144,8 +146,9 @@
                 </div>
               </td>
               <td>
-                <button v-on:click="editUser(user)" class="btn btn-success btn-sm">Edit</button>
-                <button v-on:click="deleteUser(user.id)" class="btn btn-danger btn-sm">Delete</button>
+                <button v-on:click="editUser(user)" class="btn btn-success btn-sm">
+                    <i class="far fa-edit"></i></button>
+                <button v-on:click="deleteUser(user.id)" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
               </td>
             </tr>
           </tbody>
@@ -217,6 +220,11 @@ export default {
           this.$Progress.start();
           this.userList();
           this.user.reset();
+                Toast.fire({
+                icon: 'success',
+                title: 'Created in successfully'
+                })
+
           this.$Progress.finish();
         })
         .catch((err) => {
@@ -240,8 +248,13 @@ export default {
           this.userList();
           this.user.reset();
           this.createUser();
+          Toast.fire({
+                icon: 'success',
+                title: 'Edited in successfully'
+                });
           this.$Progress.finish();
         })
+
         .catch((err) => {
           this.message = err.response.data.message;
         });
@@ -260,8 +273,13 @@ export default {
           Swal.fire("Deleted!", "", "success");
           this.$Progress.start();
           axios.delete(`/api/user/${id}`).then((res) => {
+
             this.userList();
           });
+           Toast.fire({
+                icon: 'success',
+                title: 'Deleted in successfully'
+                })
           this.$Progress.finish();
         }
       });

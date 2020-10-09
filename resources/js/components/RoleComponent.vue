@@ -3,7 +3,8 @@
     <div class="row">
       <!-- Create button Start -->
       <div class="col-md-6">
-        <button v-on:click="createRole" class="btn btn-primary btn-sm my-2">Create Role</button>
+        <button v-on:click="createRole" class="btn btn-primary btn-sm my-2">
+            <i class="fas fa-plus-circle"></i>&nbsp;Create Role</button>
       </div>
       <!-- Create button End -->
       <div class="col-md-6"></div>
@@ -38,7 +39,8 @@
                 />
                 <has-error :form="role" field="name"></has-error>
               </div>
-              <button type="submit" class="btn btn-primary float-right">save</button>
+              <button type="submit" class="btn btn-primary float-right">
+                  <i class="fa fa-save"></i>&nbsp;save</button>
             </form>
           </div>
         </div>
@@ -59,8 +61,8 @@
               <td>{{ role.id }}</td>
               <td>{{ role.name }}</td>
               <td>
-                <button v-on:click="editRole(role)" class="btn btn-success btn-sm">Edit</button>
-                <button v-on:click="deleteRole(role.id)" class="btn btn-danger btn-sm">Delete</button>
+                <button v-on:click="editRole(role)" class="btn btn-success btn-sm"><i class="far fa-edit"></i></button>
+                <button v-on:click="deleteRole(role.id)" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
               </td>
             </tr>
             <tr></tr>
@@ -116,6 +118,10 @@ export default {
         .catch((err) => {
           this.message = err.response.data.message;
         });
+         Toast.fire({
+                icon: 'success',
+                title: 'Created in successfully'
+                })
       this.$Progress.finish();
     },
     editRole(role) {
@@ -140,6 +146,10 @@ export default {
         .catch((err) => {
           this.message = err.response.data.message;
         });
+         Toast.fire({
+                icon: 'success',
+                title: 'Edited in successfully'
+                })
       this.$Progress.finish();
     },
     deleteRole(id) {
@@ -158,6 +168,10 @@ export default {
           axios.delete(`/api/role/${id}`).then((res) => {
             this.RoleList();
           });
+           Toast.fire({
+                icon: 'success',
+                title: 'Deleted in successfully'
+                })
           this.$Progress.finish();
         }
       });
